@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']    = 'http://localhost/Sistem-Rekomendasi-Universitas-Terbaik-di-Indonesia/';
+$config['base_url']    = 'http://localhost/spk-rekomendasi-universitas/';
 
 /*
 |--------------------------------------------------------------------------
