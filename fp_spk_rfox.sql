@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2024 at 12:43 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Nov 21, 2025 at 06:23 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,14 +34,14 @@ CREATE TABLE `ahp_data` (
   `weights` text NOT NULL,
   `cr` float NOT NULL,
   `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ahp_data`
 --
 
 INSERT INTO `ahp_data` (`id`, `matrix`, `normalized_matrix`, `weights`, `cr`, `created_at`) VALUES
-(36, '[[1,\"1\",\"1\"],[1,1,\"1\"],[1,1,1]]', '[[0.3333333333333333,0.3333333333333333,0.3333333333333333],[0.3333333333333333,0.3333333333333333,0.3333333333333333],[0.3333333333333333,0.3333333333333333,0.3333333333333333],[0.3333333333333333,0.3333333333333333,0.3333333333333333],[0.3333333333333333,0.3333333333333333,0.3333333333333333],[0.3333333333333333,0.3333333333333333,0.3333333333333333]]', '[0.3333333333333333,0.3333333333333333,-0.3333333333333333]', 0.0001, '2024-12-17 00:42:57');
+(40, '[[1,\"3\",\"4\"],[0.3333333333333333,1,\"3\"],[0.25,0.3333333333333333,1]]', '[[0.6315789473684211,0.6923076923076924,0.5],[0.21052631578947367,0.23076923076923078,0.375],[0.15789473684210528,0.07692307692307693,0.125],[0.6315789473684211,0.6923076923076924,0.5],[0.21052631578947367,0.23076923076923078,0.375],[0.15789473684210528,0.07692307692307693,0.125]]', '[0.6079622132253711,0.27209851551956815,-0.11993927125506072]', 0.0639086, '2025-11-21 06:06:36');
 
 -- --------------------------------------------------------
 
@@ -58,23 +58,35 @@ CREATE TABLE `alternatif` (
   `s_value` float DEFAULT NULL,
   `v_value` float DEFAULT NULL,
   `ranking` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `alternatif`
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `nama_universitas`, `akreditasi`, `fasilitas`, `biaya_perkuliahan`, `s_value`, `v_value`, `ranking`) VALUES
-(1, 'Universitas Indonesia', 4, 5, 20000000, 0.01, 0.101567, 4),
-(2, 'Institut Teknologi Bandung', 4, 5, 12500000, 0.0116961, 0.118793, 3),
-(3, 'Universitas Padjadjaran', 4, 4, 18000000, 0.009615, 0.0976564, 5),
-(4, 'Universitas Brawijaya', 4, 4, 33739000, 0.00779823, 0.079204, 10),
-(5, 'Universitas Gadjah Mada', 4, 5, 24700000, 0.00932061, 0.0946664, 6),
-(6, 'Universitas Airlangga', 4, 4, 25000000, 0.00861774, 0.0875275, 8),
-(7, 'Institut Teknologi Sepuluh Nopember', 4, 5, 12500000, 0.0116961, 0.118793, 2),
-(8, 'Universitas Bina Nusantara', 4, 3, 22400000, 0.00812165, 0.0824889, 9),
-(9, 'Universitas Diponegoro', 4, 4, 22000000, 0.00899289, 0.0913378, 7),
-(10, 'Institut Pertanian Bogor', 4, 5, 10000000, 0.0125992, 0.127966, 1);
+(1, 'Universitas Indonesia', 4, 5, 20000000, 0.479224, 0.102884, 4),
+(2, 'Institut Teknologi Bandung', 4, 5, 12500000, 0.507014, 0.10885, 3),
+(3, 'Universitas Padjadjaran', 4, 4, 18000000, 0.456728, 0.098054, 6),
+(4, 'Universitas Brawijaya', 4, 4, 33739000, 0.423575, 0.0909366, 9),
+(5, 'Universitas Gadjah Mada', 4, 5, 24700000, 0.467244, 0.100312, 5),
+(6, 'Universitas Airlangga', 4, 4, 25000000, 0.439082, 0.0942657, 8),
+(7, 'Institut Teknologi Sepuluh Nopember', 4, 5, 12500000, 0.507014, 0.10885, 2),
+(8, 'Universitas Bina Nusantara', 4, 3, 22400000, 0.411406, 0.0883239, 10),
+(9, 'Universitas Diponegoro', 4, 4, 22000000, 0.445866, 0.0957222, 7),
+(10, 'Institut Pertanian Bogor', 4, 5, 10000000, 0.520767, 0.111802, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `importance_scale`
+--
+
+CREATE TABLE `importance_scale` (
+  `id` int(11) NOT NULL,
+  `scale_value` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,7 +100,7 @@ CREATE TABLE `kriteria` (
   `nama_kriteria` varchar(100) NOT NULL,
   `bobot` int(52) NOT NULL,
   `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kriteria`
@@ -110,7 +122,7 @@ CREATE TABLE `sub_kriteria` (
   `nilai_sub_kriteria` int(11) NOT NULL,
   `nama_sub_kriteria` varchar(100) DEFAULT NULL,
   `id_kriteria` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sub_kriteria`
@@ -145,6 +157,12 @@ ALTER TABLE `alternatif`
   ADD PRIMARY KEY (`id_alternatif`);
 
 --
+-- Indexes for table `importance_scale`
+--
+ALTER TABLE `importance_scale`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -165,13 +183,19 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `ahp_data`
 --
 ALTER TABLE `ahp_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
   MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `importance_scale`
+--
+ALTER TABLE `importance_scale`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
