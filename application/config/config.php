@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']    = 'http://localhost/spk-rekomendasi-universitas/';
+$config['base_url']    = 'http://localhost/spk-university-recommendation/';
 
 /*
 |--------------------------------------------------------------------------
